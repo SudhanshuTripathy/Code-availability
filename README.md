@@ -1,4 +1,4 @@
-# Code-availability
+# Code-availability for NSL-KDD Dataset for Zero-day attack detection
 Enhancing Anomaly-Based Zero-Day Attack Detection Framework Using CNN-Driven Feature Extraction and OC-SVM
 Final Steps to Run the Code (Google Colab)
 Follow these steps carefully to execute the proposed CNN + OC-SVM model for intrusion detection:
@@ -40,3 +40,45 @@ Step 8: Reshape Data for CNN
 Convert input data into 3D format:
 (samples, features, 1)
 This is required for Conv1D layers
+Step 9: Build the CNN Model
+Define CNN architecture:
+Conv1D layers (feature extraction)
+MaxPooling layers
+Dropout (reduce overfitting)
+Dense layers
+Sigmoid output layer
+Step 10: Compile and Train CNN
+Compile model using:
+Optimizer: Adam
+Loss: Binary Crossentropy
+Train the model on training data
+Step 11: Extract Deep Features
+Use the trained CNN model
+Extract features from an intermediate layer
+These features represent learned patterns in network traffic
+Step 12: Train OC-SVM Model
+Train One-Class SVM using only normal data
+Set kernel (e.g., RBF) and parameters (gamma, nu)
+Step 13: Perform Prediction
+Apply OC-SVM on test data
+Convert output:
++1 → Normal
+-1 → Attack
+Step 14: Evaluate Model Performance
+Generate performance metrics:
+Accuracy
+Precision
+Recall
+F1-score
+Step 15: Display Final Results
+Results are shown in output cells
+Metrics and graphs demonstrate model performance
+Important Instructions
+Run all cells sequentially (top to bottom)
+Do not skip any step
+Ensure dataset is uploaded before execution
+Use same parameters for reproducibility
+
+
+#  Code-availability for CIC-IDS2017 Dataset for Zero-day attack detection
+
