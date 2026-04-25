@@ -81,4 +81,101 @@ Use same parameters for reproducibility
 
 
 #  Code-availability for CIC-IDS2017 Dataset for Zero-day attack detection
-
+Step 1: Open the Notebook in Google Colab
+Open Google Colab
+Upload or open the notebook:
+CNN-OCSVM-CIC_IDS_2017_Friday_portscan_Botnet_DDoS.ipynb
+Step 2: Configure Runtime
+Go to Runtime → Change runtime type
+Select:
+Runtime type: Python 3
+Hardware accelerator: GPU (recommended)
+Step 3: Import Required Libraries
+Run the first cell
+This loads:
+NumPy, Pandas
+Scikit-learn
+TensorFlow/Keras
+Matplotlib, Seaborn
+If any library is missing:
+!pip install numpy pandas scikit-learn tensorflow matplotlib seaborn
+Step 4: Upload or Load Dataset
+Upload the CIC-IDS2017 dataset file (Friday dataset: PortScan, Botnet, DDoS)
+OR mount Google Drive:
+from google.colab import drive
+drive.mount('/content/drive')
+Load dataset using Pandas:
+data = pd.read_csv('your_dataset.csv')
+Step 5: Data Cleaning and Preparation
+Remove unnecessary or null values
+Handle missing/infinite values
+Rename columns if required
+This ensures clean and usable input data.
+Step 6: Label Processing
+Convert multi-class labels into binary:
+Normal → 0
+Attack → 1
+Required for OC-SVM anomaly detection
+Step 7: Feature Scaling
+Normalize numerical features using:
+StandardScaler or MinMaxScaler
+Important for both CNN and OC-SVM performance.
+Step 8: Split Features and Labels
+Separate:
+X → Features
+y → Labels
+Split into training and testing datasets
+Step 9: Reshape Data for CNN
+Convert input into 3D format:
+(samples, features, 1)
+Required for Conv1D layers.
+Step 10: Build CNN Model
+Define CNN architecture:
+Conv1D layers (extract temporal patterns)
+MaxPooling layers
+Dropout (0.5) for regularization
+Dense layers
+Sigmoid output
+Step 11: Compile CNN Model
+Optimizer: Adam
+Loss: Binary Crossentropy
+Metrics: Accuracy, Precission, Recall, F1-score
+Step 12: Train CNN Model
+Train model using training data:
+model.fit(X_train, y_train, epochs=..., batch_size=...)
+Step 13: Extract Deep Features
+Use intermediate CNN layer output
+Convert raw data into high-level feature vectors
+These features are used as input to OC-SVM.
+Step 14: Train OC-SVM
+Train One-Class SVM:
+Use only normal samples
+Define:
+Kernel (rbf / linear / poly / sigmoid)
+Gamma
+ν (nu parameter)
+Step 15: Perform Prediction
+Apply OC-SVM on test features
+Output:
++1 → Normal
+-1 → Attack
+Convert to binary labels if needed
+Step 16: Evaluate Performance
+Generate evaluation metrics:
+Accuracy
+Precision
+Recall
+F1-score
+Typically using:
+from sklearn.metrics import classification_report
+Step 19: Display Final Results
+All outputs appear in notebook:
+Metrics
+Graphs
+Performance summary
+Important Instructions
+Run all cells sequentially (top → bottom)
+Do not skip any cell
+Ensure dataset path is correct
+Use same parameters for reproducibility
+GPU is recommended for faster CNN training
